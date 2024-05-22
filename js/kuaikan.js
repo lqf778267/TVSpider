@@ -116,7 +116,7 @@ class KuaiKanSpider extends Spider {
             headers['sign'] = sign;
             headers['time'] = ts;
             headers['md5'] = rand;
-            headers['version'] = '2.1.5';
+            headers['version'] = '2.1.7';
             headers['system-model'] = this.device.model;
             headers['system-brand'] = this.device.brand;
             headers['system-version'] = this.device.release;
@@ -131,8 +131,8 @@ class KuaiKanSpider extends Spider {
         await this.jadeLog.debug(`URL:${reqUrl},headers:${JSON.stringify(headers)},data:${[JSON.stringify(postData)]}`)
         let content = res.content;
         try {
-            let key = Crypto.enc.Utf8.parse('IjhHsCB2B5^#%0Ag');
-            let iv = Crypto.enc.Utf8.parse('y8_m.3rauW/>j,}.');
+            let key = Crypto.enc.Utf8.parse('NL/Ydygzmwcgl,JM');
+            let iv = Crypto.enc.Utf8.parse('az5)0f,%D7HAIBGM');
             let src = Crypto.enc.Base64.parse(content);
             let dst = Crypto.AES.decrypt({ciphertext: src}, key, {iv: iv, padding: Crypto.pad.Pkcs7});
             dst = Crypto.enc.Utf8.stringify(dst);

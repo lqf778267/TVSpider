@@ -1,4 +1,4 @@
-import {__jsEvalReturn} from './wogg.js';
+import {__jsEvalReturn} from './kuaikan.js';
 
 import * as Utils from "../lib/utils.js";
 
@@ -51,7 +51,7 @@ async function testMusicPlay(vodDetail) {
 }
 
 async function test() {
-    let siteKey = 'wogg';
+    let siteKey = 'kuaikan';
     let siteType = 3;
     await spider.init({
         skey: siteKey, stype: siteType, ext: {
@@ -68,12 +68,20 @@ async function test() {
     let classes = JSON.parse(await spider.home(true));
     console.debug(JSON.stringify(classes))
 
-    // 测试详情
-    let detail1 = JSON.parse(await spider.detail('/index.php/voddetail/84217.html'))
-    await testPlay(detail1)
 
 
 
+
+
+    //测试首页列表
+    let homeVod = JSON.parse(await spider.homeVod())
+    console.debug(JSON.stringify(homeVod));
+
+
+
+    // 测试分类
+    let catePage = JSON.parse(await spider.category("2", "1", undefined, {}));
+    console.debug(JSON.stringify(catePage))
 
 
 
@@ -83,25 +91,10 @@ async function test() {
     let search_page = JSON.parse(await spider.search("庆余年", false, 1))
     console.debug(JSON.stringify(search_page))
 
-    
+    // 测试详情
+    let detail1 = JSON.parse(await spider.detail('25514'))
+    await testPlay(detail1)
 
-
-    //测试首页列表
-    let homeVod = JSON.parse(await spider.homeVod())
-    console.debug(JSON.stringify(homeVod));
-
-    
-
-
-
-
-
-
-
-
-    // 测试分类
-    let catePage = JSON.parse(await spider.category("2", "1", undefined, {}));
-    console.debug(JSON.stringify(catePage))
 
 
 
